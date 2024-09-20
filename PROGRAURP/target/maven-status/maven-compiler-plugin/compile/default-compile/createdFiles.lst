@@ -27,6 +27,7 @@ com\mycompany\tp2_project\formularios\Ver_Form.class
 com\mycompany\tp2_project\clases\Venta.class
 com\mycompany\tp2_project\formularios\Ver_Form$1.class
 com\mycompany\tp2_project\clases\Gestion_Producto.class
+com\mycompany\tp2_project\formularios\Login_Form$4.class
 com\mycompany\tp2_project\formularios\Producto_Form$4.class
 com\mycompany\tp2_project\formularios\Producto_Form$5.class
 com\mycompany\tp2_project\formularios\Registrar_Form$6.class

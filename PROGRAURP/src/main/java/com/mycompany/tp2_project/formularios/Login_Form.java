@@ -4,6 +4,11 @@
  */
 package com.mycompany.tp2_project.formularios;
 import com.mycompany.tp2_project.utils.Validacion;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -28,7 +33,7 @@ public class Login_Form extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtContrasenia = new javax.swing.JPasswordField();
         txtUsuario = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        Label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,8 +100,12 @@ public class Login_Form extends javax.swing.JFrame {
                 .addGap(12, 12, 12))
         );
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Historic", 1, 24)); // NOI18N
-        jLabel3.setText("LOGIN SCREEN");
+        Label.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LabelMouseEntered(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,17 +115,17 @@ public class Login_Form extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(112, 112, 112))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(Label, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
+                .addComponent(Label, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
@@ -147,6 +156,21 @@ public class Login_Form extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void LabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LabelMouseEntered
+        File file = new File("C:/imagen.jpg");
+        BufferedImage bi;
+         try {
+      bi = ImageIO.read(file);
+      Image dimg = bi.getScaledInstance(Label.getWidth(), Label.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon imageIcon = new ImageIcon(dimg);
+        this.Label.setIcon(imageIcon);
+      
+      }
+      catch(IOException ex){
+
+      }
+    }//GEN-LAST:event_LabelMouseEntered
 
     /**
      * @param args the command line arguments
@@ -184,10 +208,10 @@ public class Login_Form extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Label;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField txtContrasenia;
     private javax.swing.JTextField txtUsuario;
