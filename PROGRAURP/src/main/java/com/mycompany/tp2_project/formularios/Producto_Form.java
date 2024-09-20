@@ -13,6 +13,7 @@ import com.mycompany.tp2_project.clases.Juguete;
 import com.mycompany.tp2_project.clases.Producto;
 import com.mycompany.tp2_project.clases.Ropa;
 import com.mycompany.tp2_project.utils.Validacion;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -124,11 +125,27 @@ public class Producto_Form extends javax.swing.JFrame {
 
         btnAgregar.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         btnAgregar.setText("Registrar Producto");
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseExited(evt);
+            }
+        });
 
         jPanel4.setBackground(new java.awt.Color(246, 213, 167));
 
         btnEliminar.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseExited(evt);
+            }
+        });
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -142,6 +159,14 @@ public class Producto_Form extends javax.swing.JFrame {
 
         btnVer.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         btnVer.setText("Ver");
+        btnVer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVerMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVerMouseExited(evt);
+            }
+        });
         btnVer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerActionPerformed(evt);
@@ -150,6 +175,14 @@ public class Producto_Form extends javax.swing.JFrame {
 
         btnConsultar.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         btnConsultar.setText("Consultar Stock");
+        btnConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnConsultarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnConsultarMouseExited(evt);
+            }
+        });
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarActionPerformed(evt);
@@ -232,6 +265,14 @@ public class Producto_Form extends javax.swing.JFrame {
 
         btnFiltrar.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         btnFiltrar.setText("Filtrar");
+        btnFiltrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnFiltrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnFiltrarMouseExited(evt);
+            }
+        });
         btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFiltrarActionPerformed(evt);
@@ -458,6 +499,46 @@ public class Producto_Form extends javax.swing.JFrame {
         String mensaje = gestion.obtenerStock(txtCodigo.getText());
         JOptionPane.showMessageDialog(null,mensaje);  
     }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnAgregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseEntered
+    btnAgregar.setBackground(Color.orange);       // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarMouseEntered
+
+    private void btnAgregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseExited
+    btnAgregar.setBackground(Color.white);    // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarMouseExited
+
+    private void btnVerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMouseEntered
+    btnVer.setBackground(Color.orange);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMouseEntered
+
+    private void btnVerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMouseExited
+    btnVer.setBackground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerMouseExited
+
+    private void btnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseEntered
+    btnEliminar.setBackground(Color.orange);    // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarMouseEntered
+
+    private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
+    btnEliminar.setBackground(Color.white);    // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarMouseExited
+
+    private void btnConsultarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarMouseEntered
+    btnConsultar.setBackground(Color.orange);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultarMouseEntered
+
+    private void btnConsultarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarMouseExited
+    btnConsultar.setBackground(Color.white);    // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultarMouseExited
+
+    private void btnFiltrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarMouseEntered
+    btnFiltrar.setBackground(Color.orange);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFiltrarMouseEntered
+
+    private void btnFiltrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarMouseExited
+    btnFiltrar.setBackground(Color.white);    // TODO add your handling code here:
+    }//GEN-LAST:event_btnFiltrarMouseExited
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

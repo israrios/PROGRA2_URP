@@ -12,6 +12,7 @@ com\mycompany\tp2_project\formularios\Registrar_Form.class
 com\mycompany\tp2_project\formularios\Ventas_Historial_Form$1.class
 com\mycompany\tp2_project\formularios\Venta_Form$2.class
 com\mycompany\tp2_project\clases\Gestion_Historial.class
+com\mycompany\tp2_project\formularios\Producto_Form$15.class
 com\mycompany\tp2_project\formularios\Registrar_Form$7.class
 com\mycompany\tp2_project\formularios\Producto_Form$13.class
 com\mycompany\tp2_project\formularios\Boleta_Form.class
@@ -24,11 +25,13 @@ com\mycompany\tp2_project\formularios\Producto_Form$7.class
 com\mycompany\tp2_project\formularios\Ventas_Historial_Form$2.class
 com\mycompany\tp2_project\formularios\Login_Form$1.class
 com\mycompany\tp2_project\formularios\Ver_Form.class
+com\mycompany\tp2_project\formularios\Producto_Form$16.class
 com\mycompany\tp2_project\clases\Venta.class
 com\mycompany\tp2_project\formularios\Ver_Form$1.class
 com\mycompany\tp2_project\clases\Gestion_Producto.class
 com\mycompany\tp2_project\formularios\Login_Form$4.class
 com\mycompany\tp2_project\formularios\Producto_Form$4.class
+com\mycompany\tp2_project\formularios\Producto_Form$14.class
 com\mycompany\tp2_project\formularios\Producto_Form$5.class
 com\mycompany\tp2_project\formularios\Registrar_Form$6.class
 com\mycompany\tp2_project\utils\Numero_a_Letra.class
@@ -37,6 +40,7 @@ com\mycompany\tp2_project\formularios\Venta_Form$4.class
 com\mycompany\tp2_project\clases\Ropa.class
 com\mycompany\tp2_project\formularios\Login_Form$2.class
 com\mycompany\tp2_project\formularios\Boleta_Form$1.class
+com\mycompany\tp2_project\formularios\Producto_Form$17.class
 com\mycompany\tp2_project\formularios\Ver_Form$3.class
 com\mycompany\tp2_project\formularios\Producto_Form$10.class
 com\mycompany\tp2_project\formularios\Login_Form.class
@@ -50,6 +54,7 @@ com\mycompany\tp2_project\formularios\Boleta_Form$2.class
 com\mycompany\tp2_project\formularios\Venta_Form$5.class
 com\mycompany\tp2_project\clases\Juguete.class
 com\mycompany\tp2_project\formularios\Ver_Form$2.class
+com\mycompany\tp2_project\formularios\Producto_Form$18.class
 com\mycompany\tp2_project\clases\Aseo.class
 com\mycompany\tp2_project\formularios\Ventas_Historial_Form$4.class
 com\mycompany\tp2_project\formularios\Registrar_Form$9.class

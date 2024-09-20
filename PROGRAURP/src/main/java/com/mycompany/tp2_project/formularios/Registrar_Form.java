@@ -526,7 +526,7 @@ public class Registrar_Form extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbCategoriaItemStateChanged
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+            // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void txtMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaterialActionPerformed
