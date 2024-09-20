@@ -7,6 +7,7 @@ package com.mycompany.tp2_project.formularios;
 import com.mycompany.tp2_project.clases.Gestion_Historial;
 import com.mycompany.tp2_project.clases.Venta;
 import com.mycompany.tp2_project.utils.Validacion;
+import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.WindowConstants;
@@ -121,20 +122,41 @@ public class Ventas_Historial_Form extends javax.swing.JFrame {
         txtSalida.setRows(5);
         jScrollPane2.setViewportView(txtSalida);
 
+        btnPromedio.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         btnPromedio.setText("Promedio de Ventas");
+        btnPromedio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPromedioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPromedioMouseExited(evt);
+            }
+        });
         btnPromedio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPromedioActionPerformed(evt);
             }
         });
 
+        btnReporte.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         btnReporte.setText("Reporte Cliente");
+        btnReporte.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnReporteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnReporteMouseExited(evt);
+            }
+        });
         btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporteActionPerformed(evt);
             }
         });
 
+        txtDni.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         jLabel2.setText("DNI :");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -153,10 +175,11 @@ public class Ventas_Historial_Form extends javax.swing.JFrame {
                         .addComponent(btnPromedio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnReporte)))
+                        .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(btnReporte)
+                        .addGap(8, 8, 8)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -168,12 +191,12 @@ public class Ventas_Historial_Form extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPromedio)
-                    .addComponent(btnReporte)
+                    .addComponent(btnPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -204,6 +227,22 @@ public class Ventas_Historial_Form extends javax.swing.JFrame {
         txtSalida.setText(g.reportar(iDni));
 
     }//GEN-LAST:event_btnReporteActionPerformed
+
+    private void btnPromedioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPromedioMouseEntered
+        btnPromedio.setBackground(Color.orange);
+    }//GEN-LAST:event_btnPromedioMouseEntered
+
+    private void btnPromedioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPromedioMouseExited
+         btnPromedio.setBackground(Color.white);
+    }//GEN-LAST:event_btnPromedioMouseExited
+
+    private void btnReporteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteMouseEntered
+       btnReporte.setBackground(Color.orange);
+    }//GEN-LAST:event_btnReporteMouseEntered
+
+    private void btnReporteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteMouseExited
+       btnReporte.setBackground(Color.white);
+    }//GEN-LAST:event_btnReporteMouseExited
 
     /**
      * @param args the command line arguments
