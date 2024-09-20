@@ -5,6 +5,7 @@
 package com.mycompany.tp2_project.formularios;
 
 import com.mycompany.tp2_project.utils.Validacion;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -223,6 +224,14 @@ public class Registrar_Form extends javax.swing.JFrame {
         btnRegistrar.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
         btnRegistrar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(192, 108, 67), new java.awt.Color(192, 108, 67), new java.awt.Color(192, 108, 67), new java.awt.Color(192, 108, 67)));
+        btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRegistrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRegistrarMouseExited(evt);
+            }
+        });
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
@@ -544,6 +553,14 @@ public class Registrar_Form extends javax.swing.JFrame {
     private void cmbTamanioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTamanioItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbTamanioItemStateChanged
+
+    private void btnRegistrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseEntered
+    btnRegistrar.setBackground(Color.orange);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarMouseEntered
+
+    private void btnRegistrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseExited
+    btnRegistrar.setBackground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarMouseExited
 
     /**
      * @param args the command line arguments
