@@ -6,6 +6,9 @@ package com.mycompany.tp2_project.clases;
 
 public class Accesorio extends Producto {
 
+    
+    
+    
     private int talla;
     private int material;
     private String color;
