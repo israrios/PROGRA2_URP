@@ -56,6 +56,7 @@ public class Venta {
         return items;
     }
 
+    
     public void setItems(ItemVenta[] items) {
         this.items = items;
     }
