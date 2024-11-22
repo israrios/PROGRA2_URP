@@ -1,0 +1,2 @@
+Alimento 1 AL001 12.0 aaaa 22 bbbb 12/Enero/2025
+Alimento 2 AL002 12.0 ddd 22 ffffff 22/Enero/2025

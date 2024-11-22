@@ -3,6 +3,7 @@ package com.mycompany.tp2_project.formularios;
 import com.mycompany.tp2_project.clases.Accesorio;
 import com.mycompany.tp2_project.clases.Alimento;
 import com.mycompany.tp2_project.clases.Aseo;
+import com.mycompany.tp2_project.clases.GestionArchivo;
 import com.mycompany.tp2_project.clases.Gestion_Historial;
 import com.mycompany.tp2_project.clases.Gestion_Producto;
 import com.mycompany.tp2_project.clases.Juguete;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class Producto_Form extends javax.swing.JFrame {
 
+    GestionArchivo gArchivo =new GestionArchivo();
     DefaultTableModel dtm = new DefaultTableModel();
     Gestion_Producto gestion = new Gestion_Producto();
     Validacion validacion = new Validacion();
@@ -27,7 +29,6 @@ public class Producto_Form extends javax.swing.JFrame {
 
     public Producto_Form(Gestion_Producto gestionProducto) {
         initComponents();
-
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("GESTIÓN DE PRODUCTOS");
         //INICIALIZO LOS ITEMS DEL COMBO CATEGORIA FILTRO
@@ -40,10 +41,18 @@ public class Producto_Form extends javax.swing.JFrame {
         String[] titulo = new String[]{"Codigo", "Categoria", "Nombre", "Precio"};
         dtm.setColumnIdentifiers(titulo);
         tbDatos.setModel(dtm);
+        gArchivo.leerArchivo(gestion.productos);
         if (gestionProducto != null) {
             gestion = gestionProducto;
-            refrescar();
+         
         }
+        if(!gestion.productos.isEmpty()){
+            for (Producto producto : gestion.productos) {
+            Object[] fila = {producto.getCodigo(), producto.getCategoria(), producto.getNombre(), producto.getPrecio()};
+            dtm.addRow(fila);
+        }
+        }
+        
         btnAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -440,6 +449,7 @@ public class Producto_Form extends javax.swing.JFrame {
     private void mnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnCerrarMouseClicked
         Login_Form form = new Login_Form();
         form.setVisible(true);
+        gArchivo.registrarArchivo(gestion.productos);
         dispose();
     }//GEN-LAST:event_mnCerrarMouseClicked
 

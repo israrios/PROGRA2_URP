@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.tp2_project.formularios;
 
 import com.mycompany.tp2_project.utils.Validacion;
@@ -75,7 +71,7 @@ public class Registrar_Form extends javax.swing.JFrame {
         String mes = cmbMes.getSelectedItem().toString();
         String anio = cmbAnio.getSelectedItem().toString();
 
-        try {
+        try {   
             productoForm.gestion.ingresar(categoria, codigo, nombre, dPrecio, iStock, marca, talla, color, tamanio, material, fragancia, dia, mes, anio, estacion);
             productoForm.refrescar();
         } catch (Exception e) {
