@@ -1,64 +1,51 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.tp2_project.clases;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 public class Venta {
-    
-    private ItemVenta[] items;
-    
+
+    private List<ItemVenta> items;
+
     private int nroItems;
-    
+
     private String nombreCliente;
-    
+
     private int dni;
-    
+
     private String fechaVenta;
-    
+
     private String direccion;
-    
-    public String precioTotalVenta(){
+
+    public String precioTotalVenta() {
         double igv = 0.18;
         Double total = 0D;
-        for (int i = 0; i < nroItems; i++) {
-            total += getItems()[i].getPrecioXCantidad();
+        for (ItemVenta item : items) {
+            total += item.getPrecioXCantidad();
         }
-        Double igvMonto =  total*igv;
-        Double precioFinal = total+igvMonto;
-        return ""+precioFinal;
+        Double igvMonto = total * igv;
+        Double precioFinal = total + igvMonto;
+        return "" + precioFinal;
     }
-    
-    public String porcentajeIGV(){
+
+    public String porcentajeIGV() {
         double igv = 0.18;
         Double total = 0D;
-        for (int i = 0; i < nroItems; i++) {
-            total += getItems()[i].getPrecioXCantidad();
+        for (ItemVenta item : items) {
+            total += item.getPrecioXCantidad();
         }
-        Double igvMonto =  total*igv;
+        Double igvMonto = total * igv;
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         String formattedNumber = decimalFormat.format(igvMonto);
-        return ""+formattedNumber;
+        return "" + formattedNumber;
     }
-    
-    public String precioSubtotalVenta(){
+
+    public String precioSubtotalVenta() {
         Double suma = 0D;
-        for (int i = 0; i < nroItems; i++) {
-            suma += getItems()[i].getPrecioXCantidad();
+        for (ItemVenta item : items) {
+            suma += item.getPrecioXCantidad();
         }
-        return ""+suma;
-    }
-
-
-    public ItemVenta[] getItems() {
-        return items;
-    }
-
-    
-    public void setItems(ItemVenta[] items) {
-        this.items = items;
+        return "" + suma;
     }
 
     public String getNombreCliente() {
@@ -91,7 +78,7 @@ public class Venta {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    } 
+    }
 
     public int getNroItems() {
         return nroItems;
@@ -99,5 +86,13 @@ public class Venta {
 
     public void setNroItems(int nroItems) {
         this.nroItems = nroItems;
+    }
+
+    public List<ItemVenta> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemVenta> items) {
+        this.items = items;
     }
 }

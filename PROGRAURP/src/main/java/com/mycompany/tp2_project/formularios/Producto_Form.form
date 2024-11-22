@@ -25,10 +25,6 @@
               <Font name="Segoe UI Historic" size="14" style="1"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mnVentaMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnVentaActionPerformed"/>
-          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnHistorial">
           <Properties>
@@ -401,9 +397,6 @@
                   </StringArray>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="filtroCatItemStateChanged"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>

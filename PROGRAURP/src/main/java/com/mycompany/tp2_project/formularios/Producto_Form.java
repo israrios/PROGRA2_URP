@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.tp2_project.formularios;
 
 import com.mycompany.tp2_project.clases.Accesorio;
@@ -20,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 public class Producto_Form extends javax.swing.JFrame {
 
@@ -63,23 +60,15 @@ public class Producto_Form extends javax.swing.JFrame {
             }
         });
 
-        //DOS PRODUCTOS DE PRUEBA
-        if (gestion.getContador() < 1) {
-            gestion.ingresar("Alimento", "AL001", "Croquetas", 12, 12, "Marca12", 4, "rojo", "grande", "franela", "asd", "12", "Mayo", "2025", "verano");
-            gestion.ingresar("Alimento", "AL002", "Galletas hueso", 5, 12, "Marca 44", 4, "rojo", "grande", "franela", "asd", "26", "Mayo", "2025", "verano");
-            refrescar();
-        }
-
     }
 
     public void refrescar() {
+        //LIMPIA LA TABLA
         limpiar();
         //AGREGAR TODOS LOS PRODUCTOS A LA TABLA
-        for (int i = 0; i < gestion.getContador(); i++) {
-            Producto producto = gestion.productos[i];
+        for (Producto producto : gestion.productos) {
             Object[] fila = {producto.getCodigo(), producto.getCategoria(), producto.getNombre(), producto.getPrecio()};
             dtm.addRow(fila);
-
         }
     }
 
@@ -281,11 +270,6 @@ public class Producto_Form extends javax.swing.JFrame {
 
         filtroCat.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         filtroCat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
-        filtroCat.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                filtroCatItemStateChanged(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -346,16 +330,6 @@ public class Producto_Form extends javax.swing.JFrame {
         mnVenta.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         mnVenta.setText("   Generar Venta   ");
         mnVenta.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
-        mnVenta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mnVentaMouseClicked(evt);
-            }
-        });
-        mnVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnVentaActionPerformed(evt);
-            }
-        });
         jMenuBar1.add(mnVenta);
 
         mnHistorial.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -401,81 +375,67 @@ public class Producto_Form extends javax.swing.JFrame {
 
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        try {
+            String codigo = txtCodigo.getText();
+            if (validacion.validarCodigo(codigo)) {
+                return;
+            }
 
-        if (validacion.validarCodigo(txtCodigo.getText())) {
-            return;
-        }
-        //FORMATEO EL ID del PRODUCTO
-        String codigo = txtCodigo.getText();
-        txtCodigo.setText("");
-        //VERIFICO SI SE ENCUENTRA EN EL LISTADO Y ELIMINO
-        boolean eliminado = gestion.eliminar(codigo);
-        //SI EL ID NO EXISTE EN EL LISTADO MUESTRO UN MENSAJE
-        if (!eliminado) {
-            JOptionPane.showMessageDialog(null, "Este CODIGO de producto no existe.",
-                    "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-        }
-        //REFRESCAR LA TABLA
-        refrescar();
+            txtCodigo.setText("");
+            String mensaje = gestion.eliminar(codigo);
+            refrescar();
+            throw new Exception(mensaje);
 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
-        if (validacion.validarCodigo(txtCodigo.getText())) {
-            return;
+        try {
+            if (validacion.validarCodigo(txtCodigo.getText())) {
+                return;
+            }
+            Producto producto = gestion.obtenerProducto(txtCodigo.getText());
+            if (producto == null) {
+                throw new Exception("ERROR: No existe este producto.");
+            }
+            if ("Alimento".equals(producto.getCategoria())) {
+                Alimento obj = (Alimento) producto;
+                Ver_Form ver = new Ver_Form(obj);
+                ver.setVisible(true);
+            } else if ("Ropa".equals(producto.getCategoria())) {
+                Ropa obj = (Ropa) producto;
+                Ver_Form ver = new Ver_Form(obj);
+                ver.setVisible(true);
+            } else if ("Accesorio".equals(producto.getCategoria())) {
+                Accesorio obj = (Accesorio) producto;
+                Ver_Form ver = new Ver_Form(obj);
+                ver.setVisible(true);
+            } else if ("Aseo".equals(producto.getCategoria())) {
+                Aseo obj = (Aseo) producto;
+                Ver_Form ver = new Ver_Form(obj);
+                ver.setVisible(true);
+            } else if ("Juguete".equals(producto.getCategoria())) {
+                Juguete obj = (Juguete) producto;
+                Ver_Form ver = new Ver_Form(obj);
+                ver.setVisible(true);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        Producto producto = gestion.obtenerProducto(txtCodigo.getText());
-        if ("Alimento".equals(producto.getCategoria())) {
-            Alimento obj = (Alimento) producto;
-            Ver_Form ver = new Ver_Form(obj);
-            ver.setVisible(true);
-        } else if ("Ropa".equals(producto.getCategoria())) {
-            Ropa obj = (Ropa) producto;
-            Ver_Form ver = new Ver_Form(obj);
-            ver.setVisible(true);
-        } else if ("Accesorio".equals(producto.getCategoria())) {
-            Accesorio obj = (Accesorio) producto;
-            Ver_Form ver = new Ver_Form(obj);
-            ver.setVisible(true);
-        } else if ("Aseo".equals(producto.getCategoria())) {
-            Aseo obj = (Aseo) producto;
-            Ver_Form ver = new Ver_Form(obj);
-            ver.setVisible(true);
-        } else if ("Juguete".equals(producto.getCategoria())) {
-            Juguete obj = (Juguete) producto;
-            Ver_Form ver = new Ver_Form(obj);
-            ver.setVisible(true);
-        }
-    }//GEN-LAST:event_btnVerActionPerformed
 
-    private void filtroCatItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_filtroCatItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_filtroCatItemStateChanged
+
+    }//GEN-LAST:event_btnVerActionPerformed
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
         limpiar();
-        Producto[] listado = gestion.filtrarProducto(filtroCat.getSelectedItem().toString());
-        int contador = 0;
-        if ("Todos".equals(filtroCat.getSelectedItem().toString())) {
-            contador = gestion.getContador();
-        } else {
-            contador = gestion.getContadorFiltrado();
-        }
-        for (int i = 0; i < contador; i++) {
-            Producto producto = listado[i];
+        List<Producto> filtrado = gestion.filtrarProducto(filtroCat.getSelectedItem().toString());
+        for (Producto producto : filtrado) {
             Object[] fila = {producto.getCodigo(), producto.getCategoria(), producto.getNombre(), producto.getPrecio()};
             dtm.addRow(fila);
         }
-
     }//GEN-LAST:event_btnFiltrarActionPerformed
-
-    private void mnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnVentaActionPerformed
-
-    }//GEN-LAST:event_mnVentaActionPerformed
-
-    private void mnVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnVentaMouseClicked
-
-    }//GEN-LAST:event_mnVentaMouseClicked
 
     private void mnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnCerrarMouseClicked
         Login_Form form = new Login_Form();
@@ -493,79 +453,58 @@ public class Producto_Form extends javax.swing.JFrame {
     }//GEN-LAST:event_mnHistorialMouseClicked
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-         if (validacion.validarCodigo(txtCodigo.getText())) {
-            return;
+        try {
+            if (validacion.validarCodigo(txtCodigo.getText())) {
+                return;
+            }
+            String mensaje = gestion.obtenerStock(txtCodigo.getText());
+            throw new Exception(mensaje);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        String mensaje = gestion.obtenerStock(txtCodigo.getText());
-        JOptionPane.showMessageDialog(null,mensaje);  
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnAgregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseEntered
-    btnAgregar.setBackground(Color.orange);       // TODO add your handling code here:
+        btnAgregar.setBackground(Color.orange);
     }//GEN-LAST:event_btnAgregarMouseEntered
 
     private void btnAgregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseExited
-    btnAgregar.setBackground(Color.white);    // TODO add your handling code here:
+        btnAgregar.setBackground(Color.white);
     }//GEN-LAST:event_btnAgregarMouseExited
 
     private void btnVerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMouseEntered
-    btnVer.setBackground(Color.orange);        // TODO add your handling code here:
+        btnVer.setBackground(Color.orange);
     }//GEN-LAST:event_btnVerMouseEntered
 
     private void btnVerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMouseExited
-    btnVer.setBackground(Color.white);        // TODO add your handling code here:
+        btnVer.setBackground(Color.white);
     }//GEN-LAST:event_btnVerMouseExited
 
     private void btnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseEntered
-    btnEliminar.setBackground(Color.orange);    // TODO add your handling code here:
+        btnEliminar.setBackground(Color.orange);
     }//GEN-LAST:event_btnEliminarMouseEntered
 
     private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
-    btnEliminar.setBackground(Color.white);    // TODO add your handling code here:
+        btnEliminar.setBackground(Color.white);
     }//GEN-LAST:event_btnEliminarMouseExited
 
     private void btnConsultarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarMouseEntered
-    btnConsultar.setBackground(Color.orange);        // TODO add your handling code here:
+        btnConsultar.setBackground(Color.orange);
     }//GEN-LAST:event_btnConsultarMouseEntered
 
     private void btnConsultarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultarMouseExited
-    btnConsultar.setBackground(Color.white);    // TODO add your handling code here:
+        btnConsultar.setBackground(Color.white);
     }//GEN-LAST:event_btnConsultarMouseExited
 
     private void btnFiltrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarMouseEntered
-    btnFiltrar.setBackground(Color.orange);        // TODO add your handling code here:
+        btnFiltrar.setBackground(Color.orange);
     }//GEN-LAST:event_btnFiltrarMouseEntered
 
     private void btnFiltrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarMouseExited
-    btnFiltrar.setBackground(Color.white);    // TODO add your handling code here:
+        btnFiltrar.setBackground(Color.white);
     }//GEN-LAST:event_btnFiltrarMouseExited
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Producto_Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Producto_Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Producto_Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Producto_Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Producto_Form(null).setVisible(true);

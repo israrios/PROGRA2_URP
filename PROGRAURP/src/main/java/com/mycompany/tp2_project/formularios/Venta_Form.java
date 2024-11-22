@@ -64,13 +64,12 @@ public class Venta_Form extends javax.swing.JFrame {
         String fecha = txtDia.getText() + " / " + cmbMes.getSelectedItem().toString() + " / " + cmbAnio.getSelectedItem().toString();
         venta.setFechaVenta(fecha);
         venta.setItems(gestionVenta.items);
-        venta.setNroItems(gestionVenta.getContador());
-        for (int i = 0; i < gestionVenta.getContador(); i++) {
-            productoForm.gestion.descontarStock(gestionVenta.items[i].getProducto().getCodigo(), gestionVenta.items[i].getCantidad());
-        
+        venta.setNroItems(gestionVenta.items.size());
+        for (ItemVenta iVenta : gestionVenta.items) {
+            productoForm.gestion.descontarStock(iVenta.getProducto().getCodigo(), iVenta.getCantidad());
         }
         productoForm.historial.ingresar(venta);
-         productoForm.refrescar();
+        productoForm.refrescar();
         Boleta_Form boleta = new Boleta_Form(venta, this);
         boleta.setVisible(true);
         dispose();
@@ -90,8 +89,7 @@ public class Venta_Form extends javax.swing.JFrame {
         //LIMPIA LA TABLA ANTES DE AGREGAR TODOS LOS PRODUCTOS
         limpiar();
         //AGREGA LOS PRODUCTOS A LA TABLA 1 POR 1
-        for (int i = 0; i < gestionVenta.getContador(); i++) {
-            ItemVenta item = gestionVenta.items[i];
+        for (ItemVenta item : gestionVenta.items) {
             Object[] fila = {item.getProducto().getCodigo(),
                 item.getProducto().getCategoria(),
                 item.getProducto().getNombre(),
@@ -157,16 +155,8 @@ public class Venta_Form extends javax.swing.JFrame {
         btnGenerar.setText("Generar Venta");
         btnGenerar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(192, 108, 67), new java.awt.Color(192, 108, 67), new java.awt.Color(192, 108, 67), new java.awt.Color(192, 108, 67)));
         btnGenerar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnGenerarMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnGenerarMouseExited(evt);
-            }
-        });
-        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarActionPerformed(evt);
             }
         });
 
@@ -419,10 +409,6 @@ public class Venta_Form extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
-
-    }//GEN-LAST:event_btnGenerarActionPerformed
-
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
         if (validacion.validarCodigo(txtCodigo.getText())) {
@@ -455,69 +441,43 @@ public class Venta_Form extends javax.swing.JFrame {
         if (validacion.validarCodigo(txtCodigo.getText())) {
             return;
         }
-        //FORMATEO EL ID del PRODUCTO
-        String codigo = txtCodigo.getText();
-        txtCodigo.setText("");
-        //VERIFICO SI SE ENCUENTRA EN EL LISTADO Y ELIMINO
-        boolean eliminado = gestionVenta.eliminar(codigo);
-        //SI EL ID NO EXISTE EN EL LISTADO MUESTRO UN MENSAJE
-        if (!eliminado) {
-            JOptionPane.showMessageDialog(null, "Este Producto no se encuentra.",
-                    "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+
+        try {
+            if (validacion.validarCodigo(txtCodigo.getText())) {
+                return;
+            }
+            String codigo = txtCodigo.getText();
+            txtCodigo.setText("");
+            String mensaje = gestionVenta.eliminar(codigo);
+            refrescar();
+            throw new Exception(mensaje);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        //REFRESCAR LA TABLA
-        refrescar();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnAgregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseEntered
-       btnAgregar.setBackground(Color.orange);
+        btnAgregar.setBackground(Color.orange);
     }//GEN-LAST:event_btnAgregarMouseEntered
 
     private void btnAgregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseExited
-      btnAgregar.setBackground(Color.white);
+        btnAgregar.setBackground(Color.white);
     }//GEN-LAST:event_btnAgregarMouseExited
 
     private void btnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseExited
-         btnEliminar.setBackground(Color.white);
+        btnEliminar.setBackground(Color.white);
     }//GEN-LAST:event_btnEliminarMouseExited
 
     private void btnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseEntered
-         btnEliminar.setBackground(Color.orange);
+        btnEliminar.setBackground(Color.orange);
     }//GEN-LAST:event_btnEliminarMouseEntered
 
-    private void btnGenerarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarMouseEntered
-        btnGenerar.setBackground(Color.orange);
-    }//GEN-LAST:event_btnGenerarMouseEntered
-
     private void btnGenerarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenerarMouseExited
-      btnGenerar.setBackground(Color.white);
+        btnGenerar.setBackground(Color.white);
     }//GEN-LAST:event_btnGenerarMouseExited
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Venta_Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Venta_Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Venta_Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Venta_Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Venta_Form(null, null).setVisible(true);

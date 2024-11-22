@@ -150,9 +150,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnGenerarMouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnGenerarMouseExited"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerarActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel2">

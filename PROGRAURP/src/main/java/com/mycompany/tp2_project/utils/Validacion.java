@@ -3,6 +3,7 @@ package com.mycompany.tp2_project.utils;
 import com.mycompany.tp2_project.clases.Gestion_Producto;
 import com.mycompany.tp2_project.clases.ItemVenta;
 import com.mycompany.tp2_project.clases.Producto;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /*
@@ -120,14 +121,12 @@ public class Validacion {
     }
 
     public boolean validarCodExistencia(Gestion_Producto gProductos, String codigo) {
-        for (int i = 0; i < gProductos.getContador(); i++) {
-            Producto producto = gProductos.obtenerProducto(codigo);
-            if (producto != null) {
+        Producto seleccionado = gProductos.obtenerProducto(codigo);
+            if (seleccionado != null) {
                 JOptionPane.showMessageDialog(
                         null, "El codigo ingresado ya existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
                 return true;
             }
-        }
         return false;
     }
 
@@ -199,8 +198,7 @@ public class Validacion {
         return false;
     }
 
-    public boolean validarVenta(String nombreCliente, String dni, String direccion, String dia, ItemVenta[] items) {
-        //VALIDACION GENERAL
+    public boolean validarVenta(String nombreCliente, String dni, String direccion, String dia, List<ItemVenta> items) {
 
         if (validarDNI(dni)) {
             return true;
@@ -214,7 +212,7 @@ public class Validacion {
         if (validarEntero(dia, "Dia")) {
             return true;
         }
-        if (items.length < 1) {
+        if (items.size() < 1) {
             return true;
         }
         return false;

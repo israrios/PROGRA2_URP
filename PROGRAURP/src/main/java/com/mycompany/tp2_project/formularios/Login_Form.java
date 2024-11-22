@@ -4,6 +4,7 @@
  */
 package com.mycompany.tp2_project.formularios;
 import com.mycompany.tp2_project.utils.Validacion;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -21,6 +22,19 @@ public class Login_Form extends javax.swing.JFrame {
     public Login_Form() {
         initComponents();
         setTitle("INICIAR SESIÓN");
+         
+         try {
+             File file = new File("src/main/resources/img/logo.png");
+        BufferedImage bi;
+      bi = ImageIO.read(file);
+      Image dimg = bi.getScaledInstance(Label.getWidth(), Label.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon imageIcon = new ImageIcon(dimg);
+        this.Label.setIcon(imageIcon);
+      
+      }
+      catch(IOException ex){
+
+      }
     }
 
     @SuppressWarnings("unchecked")
@@ -42,6 +56,14 @@ public class Login_Form extends javax.swing.JFrame {
         btnIngresar.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         btnIngresar.setText("INGRESAR");
         btnIngresar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnIngresarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnIngresarMouseExited(evt);
+            }
+        });
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
@@ -113,19 +135,20 @@ public class Login_Form extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(Label, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(Label, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(Label, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
+                .addComponent(Label, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
@@ -158,11 +181,11 @@ public class Login_Form extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void LabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LabelMouseEntered
-        File file = new File("C:/imagen.jpg");
+      try {
+        File file = new File("src/main/resources/img/dog.jpg");
         BufferedImage bi;
-         try {
-      bi = ImageIO.read(file);
-      Image dimg = bi.getScaledInstance(Label.getWidth(), Label.getHeight(), Image.SCALE_SMOOTH);
+        bi = ImageIO.read(file);
+        Image dimg = bi.getScaledInstance(Label.getWidth(), Label.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(dimg);
         this.Label.setIcon(imageIcon);
       
@@ -171,6 +194,14 @@ public class Login_Form extends javax.swing.JFrame {
 
       }
     }//GEN-LAST:event_LabelMouseEntered
+
+    private void btnIngresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseEntered
+        btnIngresar.setBackground(Color.orange);
+    }//GEN-LAST:event_btnIngresarMouseEntered
+
+    private void btnIngresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseExited
+        btnIngresar.setBackground(Color.white);
+    }//GEN-LAST:event_btnIngresarMouseExited
 
     /**
      * @param args the command line arguments
