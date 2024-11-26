@@ -13,7 +13,11 @@ public class GestionArchivo {
     public void registrarArchivo(List<Producto> productos) {
 
         try {
-            FileWriter fw = new FileWriter("C:\\Users\\jader\\OneDrive\\Documents\\01_UNIVERSIDAD\\06_URP_2024_II\\02_Progra\\00_Proyecto\\PROGRAURP\\PROGRAURP\\src\\main\\resources\\data\\Productos.txt");
+            ClassLoader classLoader = GestionArchivo.class.getClassLoader();
+             String filePath = classLoader.getResource("data/Productos.txt").getPath();
+
+            // Usa FileReader para leer el archivo
+            FileWriter fw = new FileWriter(filePath);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter pw = new PrintWriter(bw);
             for (Producto producto : productos) {
@@ -35,7 +39,13 @@ public class GestionArchivo {
 
     public void leerArchivo(List<Producto> productos) {
         try {
-            FileReader fr = new FileReader("C:\\Users\\jader\\OneDrive\\Documents\\01_UNIVERSIDAD\\06_URP_2024_II\\02_Progra\\00_Proyecto\\PROGRAURP\\PROGRAURP\\src\\main\\resources\\data\\Productos.txt");
+          //  FileReader fr = new FileReader("C:\\Users\\jader\\OneDrive\\Documents\\01_UNIVERSIDAD\\06_URP_2024_II\\02_Progra\\00_Proyecto\\PROGRAURP\\PROGRAURP\\src\\main\\resources\\data\\Productos.txt");
+             ClassLoader classLoader = GestionArchivo.class.getClassLoader();
+             String filePath = classLoader.getResource("data/Productos.txt").getPath();
+
+            // Usa FileReader para leer el archivo
+            FileReader fr = new FileReader(filePath);
+            
             BufferedReader br = new BufferedReader(fr);
             String linea = "";
             while ((linea = br.readLine()) != null) {
@@ -52,6 +62,19 @@ public class GestionArchivo {
                             datos[7] // Fecha de caducidad
                     );
                     productos.add(alimento);
+                }
+                if ("Aseo".equals(datos[0])) {
+                    Aseo aseo = new Aseo(
+                            Integer.parseInt(datos[1]), // ID
+                            datos[2], // Código
+                            Double.parseDouble(datos[3]), // Precio
+                            datos[4], // Nombre
+                            Integer.parseInt(datos[5]), // Stock
+                            "Aseo", // Categoría
+                            datos[6], // Fecha de caducidad
+                            datos[7] //fragancia
+                    );
+                    productos.add(aseo);
                 }
 
             }

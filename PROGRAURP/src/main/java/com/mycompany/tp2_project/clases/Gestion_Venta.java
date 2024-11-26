@@ -1,12 +1,13 @@
 package com.mycompany.tp2_project.clases;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Gestion_Venta {
 
     public List<ItemVenta> items = new ArrayList<>();
-
+    Iterator iterVentas = items.iterator();
     public Gestion_Venta() {
     }
 
@@ -19,8 +20,9 @@ public class Gestion_Venta {
     }
     
      public ItemVenta obtenerItem(String codigo) {
-        for (ItemVenta iVenta : items) {
-             if (codigo.equals(iVenta.getCodigo())) {
+         while (iterVentas.hasNext()) {
+            ItemVenta iVenta = (ItemVenta) iterVentas.next();
+            if (codigo.equals(iVenta.getCodigo())) {
                 return iVenta;
             }
         }

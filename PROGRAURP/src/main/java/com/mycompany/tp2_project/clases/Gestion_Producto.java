@@ -1,19 +1,21 @@
 package com.mycompany.tp2_project.clases;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Gestion_Producto {
 
     public List<Producto> productos = new ArrayList<>();
     public List<Producto> filtrados = new ArrayList<>();
-
+    Iterator iterProductos = productos.iterator();
 
     public Gestion_Producto() {
     }
 
     public void descontarStock(String codigo, int cantidad) {
-        for (Producto producto : productos) {
+        while (iterProductos.hasNext()) {
+            Producto producto = (Producto) iterProductos.next();
             if (codigo.equals(producto.getCodigo())) {
                 producto.restarStock(cantidad);
             }
@@ -21,7 +23,8 @@ public class Gestion_Producto {
     }
     
     public String obtenerStock(String codigo) {
-        for (Producto producto : productos) {
+        while (iterProductos.hasNext()) {
+            Producto producto = (Producto) iterProductos.next();
             if (codigo.equals(producto.getCodigo())) {
                return producto.getStockDisponible();
             }
@@ -106,7 +109,8 @@ public class Gestion_Producto {
     
     
     public Producto obtenerProducto(String codigo) {
-        for (Producto producto : productos) {
+        while (iterProductos.hasNext()) {
+            Producto producto = (Producto) iterProductos.next();
              if (codigo.equals(producto.getCodigo())) {
                 return producto;
             }
@@ -116,12 +120,13 @@ public class Gestion_Producto {
 
     public List<Producto> filtrarProducto(String categoria) {
         if ("Todos".equals(categoria)) return productos; 
-        for (Producto producto : productos) {
-                if (categoria.equals(producto.getCategoria())) {
+        while (iterProductos.hasNext()) {
+            Producto producto = (Producto) iterProductos.next();
+             if (categoria.equals(producto.getCategoria())) {
                     filtrados.add(producto);
                 }
-            }
-            return filtrados;
+        }
+        return filtrados;
     }
 
     public String eliminar(String codigo) {
